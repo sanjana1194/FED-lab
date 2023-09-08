@@ -40,6 +40,7 @@
   console.log("span is clicked")
   });
  button.addEventListener('click',() =>{
+    event.stopPropagation();
   console.log("button is clicked")
   });
  </script>
