@@ -1,0 +1,653 @@
+1)Pattern:
+
+html:
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Experiment 1</title>
+	<link rel='stylesheet' href='exp1style.css'>
+</head>
+<body>
+	<table style="margin:0 auto;margin-top:80px";>
+			<tr>
+				<td class=one></td>
+				<td class=two></td>
+				<td class=three></td>
+				<td class=one></td>
+				<td class=two></td>
+				<td class=three></td>
+			</tr>
+			<tr>
+				<td class=two></td>
+				<td class=three></td>
+				<td class=one></td>
+				<td class=two></td>
+				<td class=three></td>
+				<td class=one></td>
+			</tr>
+			<tr>
+				<td class=three></td>
+				<td class=one></td>
+				<td class=two></td>
+				<td class=three></td>
+				<td class=one></td>
+				<td class=two></td>
+			</tr>
+			<tr>
+				<td class=one></td>
+				<td class=two></td>
+				<td class=three></td>
+				<td class=one></td>
+				<td class=two></td>
+				<td class=three></td>
+			</tr>
+			<tr>
+				<td class=two></td>
+				<td class=three></td>
+				<td class=one></td>
+				<td class=two></td>
+				<td class=three></td>
+				<td class=one></td>
+			</tr>
+	</table>
+
+
+</body>
+</html>
+
+
+css:
+.one{
+	background-color:rgb(255,140,0);
+	height:60px;
+	width: 60px;
+}
+.two{
+	background-color:rgb(230,160,110);
+	height:60px;
+	width: 60px;
+}
+.three{
+	background-color:rgb(110,40,10);
+	height:60px;
+	width: 60px;
+}
+.one:hover{
+	transform: scale(1.2);
+}
+.two:hover{
+	transform: scale(1.2);
+}
+.three:hover{
+	transform: scale(1.2);
+}
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+2)Drag and drop
+<!DOCTYPE HTML>
+<html>
+<head>
+<script>
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+}
+</script>
+<style type="text/css">
+#div1{
+    width:500px;
+    height:300px;
+
+
+    
+}
+</style>
+</head>
+<body>
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+<img id="drag1" src="logo.jpeg" draggable="true" ondragstart="drag(event)" width="500" height="300">
+</body>
+</html>
+--------------------------------------------------------------------------------------------------------------------------------------------------
+3)Event Bubbling:
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Event Bubbling</title>
+	<style type="text/css">
+		div{
+			width: 500px;
+			heght: 400px;
+			background-color: indianred;
+		}
+	</style>
+</head>
+<body>
+	<button id="event">Click Me</button>
+	<div onmouseover="over(this)" onmouseout="out(this)">
+		<h1>Mouse hover</h1>
+	</div>
+	<script type="text/javascript">
+		document.getElementById("event").addEventListener("click",function(){
+			alert("You Clicked the Button");
+		});
+		function over(obj){
+			obj.innerHTML="inside the div element";
+		}
+		function out(obj){
+			obj.innerHTML="Out side div"
+		}
+	</script>
+
+</body>
+</html>
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+4)calculator :
+
+html:
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Calculator</title>
+	
+	<style type="text/css">
+		.tv{
+	width: 275px;
+	height: 30px;
+	background-color: lightgray;
+	border-color: lightgray;
+	margin-top: 50px;
+}
+.b1{
+	width: 70px;
+	height: 30px;
+    
+}
+  table {
+            background-color: rgb(150, 150, 150);
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 0;
+            align:center; 
+        }
+
+	
+	</style>
+</head>
+<body>
+	<script type="text/javascript" src="scriptar.js"></script>
+<center>
+	<form name="cal1">
+			<input class="tv" type="textview" name="textview" style="background-color:rgb(150,150,150);">
+		</form>
+<table style="background-color:rgb(150,150,150)">
+	<tr >
+		<td><input class="b1" type="button" value="(" onclick="insert('(')"></td>
+		<td align="center"><input class="b1" type="button" value="CE" onclick="cal1.textview.value=' '"></td>
+		<td align="center"><input class="b1" type="button" value=")" onclick="insert(')')"></td>
+		<td align="center"><input class="b1" type="button" value="C" onclick="backspace()"></td>
+	</tr>
+	<tr>
+		<td align="center"><input class="b1" type="button" value="1" onclick="insert('1')"></td>
+		<td align="center"><input class="b1" type="button" value="2" onclick="insert('2')"></td>
+		<td align="center"><input class="b1" type="button" value="3" onclick="insert('3')"></td>
+		<td align="center"><input class="b1" type="button" value="+" onclick="insert('+')"></td>
+	</tr>
+	<tr>
+		<td align="center"><input class="b1" type="button" value="4" onclick="insert('4')"></td>
+		<td align="center"><input class="b1" type="button" value="5" onclick="insert('5')"></td>
+		<td align="center"><input class="b1" type="button" value="6" onclick="insert('6')"></td>
+		<td align="center"><input class="b1" type="button" value="-" onclick="insert('-')"></td>
+	</tr>
+    <tr>
+		<td align="center"><input class="b1" type="button" value="7" onclick="insert('7')"></td>
+		<td align="center"><input class="b1" type="button" value="8" onclick="insert('8')"></td>
+		<td align="center"><input class="b1" type="button" value="9" onclick="insert('9')"></td>
+		<td align="center"><input class="b1" type="button" value="*" onclick="insert('*')"></td>
+	</tr>
+	<tr>
+		<td align="center"><input class="b1" type="button" value="." onclick="insert('.')"></td>
+		<td align="center"><input class="b1" type="button" value="0" onclick="insert('0')"></td>
+		<td align="center"><input class="b1" type="button" value="=" onclick="eq()"></td>
+		<td align="center"><input class="b1" type="button" value="/" onclick="insert('/')"></td>
+		</tr>
+
+</table>
+</center>
+</body>
+</html>
+
+js:
+function insert(n){
+	document.cal1.textview.value=document.cal1.textview.value+n;
+}
+function backspace(){
+	var exp=document.cal1.textview.value;
+	document.cal1.textview.value=exp.substring(0,exp.length-1);
+
+}
+function eq(){
+	var exp=document.cal1.textview.value;
+	if(exp){
+		document.cal1.textview.value=eval(exp);
+	}
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+5)map(),reduce(),filter():
+
+--------------------------------------------------------------
+6)Counter:
+
+import React,{Component} from 'react';
+import './App.css';
+class Counter extends Component{
+  constructor(props){
+    super(props);
+    this.state={count:0};
+  }
+  increment=()=>{
+    this.setState({count:this.state.count+1});
+  }
+  decrement=()=>{
+    this.setState({count:this.state.count-1});
+  }
+  clear=()=>{
+    this.setState({count:0});
+  }
+  render(){
+    return(
+      <div className="counter-container">
+      <h1>Counter:{this.state.count}</h1>
+      <button className="c-button" onClick={this.increment}>Increment</button>
+      <button className="c-button" onClick={this.decrement}>Decrement</button>
+      <button className="clear-button" onClick={this.clear}>clear</button>
+      </div>
+      );
+  }
+}
+
+export default Counter;
+
+
+css:
+
+.counter-container{
+  diplay:flex;
+  flex-direction:column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: aqua;
+  padding: 20px;
+  height:30vh;
+}
+.c-button,.clear-button{
+  margin:5px;
+  background-color: aquamarine;
+  color: black;
+  padding:10px 20px;
+}
+.clear-button:hover{
+  background-color: orangered;
+}
+.c-button:hover{
+  background-color: whitesmoke;
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+7)Text Color:
+
+
+import React, { Component } from 'react';
+import './App.css';
+
+class TextColorChanger extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      textColor: 'black', // Initial text color
+    };
+  }
+
+  changeColor = (event) => {
+    const selectedColor = event.target.value;
+    this.setState({ textColor: selectedColor });
+  }
+
+  render() {
+    const { textColor } = this.state;
+
+    return (
+      <div class="text-color-changer-container">
+        <h1 style={{ color: textColor }}>Text Color Changer</h1>
+        <input
+          type="color"
+          value={textColor}
+          onChange={this.changeColor}
+        />
+      </div>
+    );
+  }
+}
+
+export default TextColorChanger;
+
+
+css:
+.text-color-changer-container {
+  text-align: center;
+  margin: 30px;
+  height:30vh;
+  width:100%;
+  background-color: lightgray;
+
+}
+
+h1 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 60px;
+  height: 40px;
+  cursor: pointer;
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+8)array of objects in tabular form:
+import React, { Component } from 'react';
+
+class TableView extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [
+        { id: 1, name: 'John', age: 30 },
+        { id: 2, name: 'Alice', age: 25 },
+        { id: 3, name: 'Bob', age: 35 },
+        // Add more data objects here
+      ],
+    };
+  }
+
+  renderTable() {
+    const { data } = this.state;
+
+    if (data.length === 0) {
+      return <p>No data available.</p>;
+    }
+
+    const columns = Object.keys(data[0]);
+
+    return (
+      <table style={{ border: '1px solid #000', borderCollapse: 'collapse', margin: '0 auto' }}>
+
+        <thead>
+          <tr>
+            {columns.map((column) => (
+              <th key={column} style={{ border: '1px solid #000', padding: '8px', backgroundColor: '#f2f2f2' }}>
+                {column}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((row) => (
+            <tr key={row.id}>
+              {columns.map((column) => (
+                <td key={column} style={{ border: '1px solid #000', padding: '8px' }}>
+                  {row[column]}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
+  }
+
+  render() {
+    return (
+      <div>
+        <h1 style={{ textAlign: 'center' }}>Data Table</h1>
+        {this.renderTable()}
+      </div>
+    );
+  }
+}
+
+export default TableView;
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+9)Digital clock:
+
+import React, {Component} from 'react';
+import './App.css';
+class Clock extends Component{
+    constructor(props){
+        super(props);
+        this.state = {date: new Date()};
+    }
+componentDidMount(){
+        this.timer = setInterval(
+            () => this.setState({date: new Date()}),
+            1000
+        );
+    }
+componentWillUnmount(){
+        clearInterval(this.timer);
+    }
+render(){
+        return( 
+            <div class="clock">
+            <center>
+            <h1>Digital Clock</h1>
+                <div class="timer"><center>{this.state.date.toLocaleTimeString('en-US')}</center></div>
+            </center>
+            </div>
+        )
+    }
+}
+export default Clock;
+
+
+
+css:
+
+.clock {
+  background: linear-gradient(45deg, #FF6B6B, #FFD1DC);
+  color: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Increase the box shadow */
+  margin-left: 450px;
+  margin-top: 100px;
+  width:300px;
+  height: 400px;
+}
+
+.timer {
+  font-size: 30px; /* Reduce the font size */
+  font-weight: bold;
+  color: #FF69B4; /* Set a different text color */
+  background-color: #FFD7E8;
+  width: 240px;
+  height: 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 0, 0, 0.2); /* Add an additional box shadow for a 3D effect */
+  margin-top: 60px; /* Add margin to the top for spacing */
+}
+
+h1 {
+  padding: 20px;
+  font-size: 32px; /* Increase the font size for the title */
+  font-family: 'Arial', sans-serif;
+  margin-bottom: 20px; /* Increase the margin to add more space between h1 and timer */
+}
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+10)useStateHook
+
+import React, { useState } from 'react';
+import './App.css';
+
+function App() {
+  const [fibonacci, setFibonacci] = useState([0, 1]);
+  const [currentIndex, setCurrentIndex] = useState(1);
+
+  const incrementfib = () => {
+    const nextFibonacci = [...fibonacci, fibonacci[currentIndex] + fibonacci[currentIndex - 1]];
+    setFibonacci(nextFibonacci);
+    setCurrentIndex(currentIndex + 1);
+  };
+
+  const decrementfib= () => {
+    if (currentIndex > 1) {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
+
+  return (
+    <div className="App">
+    <center>
+      <h1>Fibonacci Series</h1>
+      <p>Current Fibonacci Number: {fibonacci[currentIndex]}</p>
+      <button onClick={incrementfib}>Increment</button>
+      <span>
+      </span>
+      <button onClick={decrementfib}>Decrement</button>
+      </center>
+    </div>
+  );
+}
+export default App;
+--------
+css:
+.App {
+  background: linear-gradient(to right, #11998e, #38ef7d);
+  color: white;
+  border-radius: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Increase the box shadow */
+  margin-left: 450px;
+  margin-top: 100px;
+  width:300px;
+  height: 350px;
+}
+h1{
+  padding: 25px;
+}
+span{
+  margin: 0 6px;
+}
+button{
+  background: linear-gradient(to right, #0D7B5A, #00B28F);
+  color: #fff;
+  width: 100px;
+  height: 30px;
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+11)useContext:
+
+import {createContext,useContext} from 'react';
+const TextContext=createContext('');
+const App=()=>{
+  return(
+    <TextContext.Provider value="Hello,World">
+    <ParentA/>
+    </TextContext.Provider>
+
+    );
+}
+const ParentA=()=>{
+  const txt=useContext(TextContext);
+  return(
+  <div>
+  <h1>Parent A</h1>
+  <ChildA/>
+  </div>
+  );
+  
+}
+const ChildA=()=>{
+  const txt=useContext(TextContext);
+  return(
+  <div>
+  <h3>Child Component</h3>
+  <p>{txt}</p>
+  <GrandchildA/>
+  </div>
+  );
+}
+const GrandchildA=()=>{
+  const txt=useContext(TextContext);
+  return(
+  <div>
+  <h3> GrandChild Component</h3>
+  <p>{txt}</p>
+  </div>
+  );
+}
+
+export default App;
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+12)useEffect:
+
+import React,{useState,useEffect}  from 'react';
+const App=()=>{
+  return(
+    <div>
+     <UserList sourceURL='https://jsonplaceholder.typicode.com/users'></UserList>
+     </div>
+    );
+}
+ const UserList=({sourceURL})=>{
+  const[userList,setUserList]=useState([]);
+  useEffect(()=>{
+    fetch(sourceURL) //transferring a function to that url
+    .then(response =>response.json())
+    .then(users=>setUserList(users))
+  },[sourceURL]);
+  return (
+    <div>
+    {userList.map(user =><h2 key={user.id}>{user.name}</h2>)}
+      </div>
+    );
+
+ }
+ export default App;
+-------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
